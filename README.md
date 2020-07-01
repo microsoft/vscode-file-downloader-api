@@ -1,5 +1,135 @@
+# VS Code File Downloader API
 
-# Contributing
+This package acts as a wrapper around the VS Code File Downloader extension, which exposes an API that allows other
+extensions to download and manage binary dependencies.
+
+## Setup
+
+Place the following in your VS Code extension's `package.json` file:
+
+```json
+"extensionDependencies": [
+    "mindaro.file-downloader"
+]
+```
+
+## Usage
+
+To get the API:
+
+```typescript
+import { Uri } from "vscode";
+import { getApi, FileDownloader } from "vscode-file-downloader-api";
+...
+const fileDownloader: FileDownloader = await getApi();
+```
+
+### Download file:
+
+Simplest case:
+
+```typescript
+const file: Uri = await fileDownloader.downloadFile(
+    Uri.parse(url),
+    filename,
+    context
+);
+```
+
+With cancellation token and download progress callback:
+
+```typescript
+import { Uri, CancellationTokenSource } from "vscode";
+...
+
+const cancellationTokenSource = new CancellationTokenSource();
+const cancellationToken = cancellationTokenSource.token;
+
+const progressCallback = (downloadedBytes: number, totalBytes: number | undefined) => {
+    console.log(`Downloaded ${downloadedBytes}/${totalBytes} bytes`);
+};
+
+const file: Uri = await fileDownloader.downloadFile(
+    Uri.parse(url),
+    filename,
+    context,
+    cancellationToken,
+    progressCallback
+);
+```
+
+Extract .zip file into directory:
+
+If you set `shouldUnzip` to true and download a .zip file, it will be automatically extracted to a folder titled `filename`.
+
+```typescript
+const directory: Uri = await fileDownloader.downloadFile(
+    Uri.parse(url),
+    filename,
+    context,
+    /* cancellationToken */ undefined,
+    /* progressCallback */ undefined,
+    { shouldUnzip: true }
+);
+```
+
+Verify file checksum:
+
+Supported algorithms are determined by the Node and OpenSSL versions that ship with VS Code. If you are unzipping a file, the checksum is computed before decompression.
+
+```typescript
+const file: Uri = await fileDownloader.downloadFile(
+    Uri.parse(url),
+    filename,
+    context,
+    /* cancellationToken */ undefined,
+    /* onDownloadProgressChange */ undefined,
+    {
+        checksum: `your expected sha256 checksum`,
+        checksumAlgorithm: `sha256`
+    }
+)
+```
+
+### List previously downloaded files:
+
+```typescript
+const downloadedFiles: Uri[] = await fileDownloader.listDownloadedItems(context);
+```
+
+### Get a single downloaded file:
+
+```typescript
+try {
+    const downloadedFile: Uri = await fileDownloader.getItem(filename, context);
+}
+catch (error) {
+    // File does not exist in downloads directory
+}
+```
+or
+```typescript
+const downloadedFile: Uri = await fileDownloader.tryGetItem(filename, context);
+if (downloadedFile === undefined) {
+    // File does not exist in downloads directory
+}
+```
+
+### Delete downloaded files
+
+Delete one file:
+
+```typescript
+await fileDownloader.deleteItem(filename, context);
+```
+
+Delete all files:
+
+```typescript
+await fileDownloader.deleteAllItems(context);
+```
+
+## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
 Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
