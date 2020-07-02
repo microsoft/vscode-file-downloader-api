@@ -2,6 +2,7 @@
     "name": "vscode-file-downloader-api",
     "version": "1.0.0",
     "description": "Wrapper package for the VS Code File Downloader extension",
+    "repository": "github:microsoft/vscode-file-downloader-api",
     "main": "./out/index.js",
     "scripts": {
         "compile": "tsc -p ./",
