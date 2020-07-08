@@ -73,24 +73,6 @@ const directory: Uri = await fileDownloader.downloadFile(
 );
 ```
 
-Verify file checksum:
-
-Supported algorithms are determined by the Node and OpenSSL versions that ship with VS Code. If you are unzipping a file, the checksum is computed before decompression.
-
-```typescript
-const file: Uri = await fileDownloader.downloadFile(
-    Uri.parse(url),
-    filename,
-    context,
-    /* cancellationToken */ undefined,
-    /* onDownloadProgressChange */ undefined,
-    {
-        checksum: `your expected sha256 checksum`,
-        checksumAlgorithm: `sha256`
-    }
-)
-```
-
 ### List previously downloaded files:
 
 ```typescript
