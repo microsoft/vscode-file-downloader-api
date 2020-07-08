@@ -142,3 +142,20 @@ provided by the bot. You will only need to do this once across all repos using o
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+### Testing changes
+
+Do not use `npm link` to test changes locally. It can result in duplicate type declarations that can cause problems with
+TypeScript. To test changes locally, compile and pack the package:
+
+```bash
+npm run compile
+npm pack
+```
+
+This produces a file called `vscode-file-downloader-api-X.X.X.tgz` where `X.X.X` is the version number. Install the 
+package in the consumer extension's root folder:
+
+```bash
+npm install ./path/to/vscode-file-downloader-api-X.X.X.tgz
+```
