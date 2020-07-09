@@ -7,8 +7,6 @@ export interface FileDownloadSettings {
     timeoutInMs?: number;
     retries?: number;
     retryDelayInMs?: number;
-    checksum?: string;
-    checksumAlgorithm?: string;
     shouldUnzip?: boolean;
 }
 
