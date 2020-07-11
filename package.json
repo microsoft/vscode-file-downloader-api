@@ -1,12 +1,18 @@
 {
-    "name": "vscode-file-downloader-api",
+    "name": "@microsoft/vscode-file-downloader-api",
     "version": "1.0.0",
     "description": "Wrapper package for the VS Code File Downloader extension",
     "repository": {
         "type": "git",
         "url": "https://github.com/microsoft/vscode-file-downloader-api.git"
     },
-    "files": ["out/*", "CODE_OF_CONDUCT.md", "LICENSE.md", "README.md", "SECURITY.md"],
+    "files": [
+        "out/*",
+        "CODE_OF_CONDUCT.md",
+        "LICENSE.md",
+        "README.md",
+        "SECURITY.md"
+    ],
     "main": "./out/index.js",
     "scripts": {
         "compile": "tsc -p ./",

@@ -19,7 +19,7 @@ To get the API:
 
 ```typescript
 import { Uri } from "vscode";
-import { getApi, FileDownloader } from "vscode-file-downloader-api";
+import { getApi, FileDownloader } from "@microsoft/vscode-file-downloader-api";
 ...
 const fileDownloader: FileDownloader = await getApi();
 ```
@@ -135,9 +135,8 @@ npm run compile
 npm pack
 ```
 
-This produces a file called `vscode-file-downloader-api-X.X.X.tgz` where `X.X.X` is the version number. Install the 
-package in the consumer extension's root folder:
+This produces a file called `microsoft-vscode-file-downloader-api-X.X.X.tgz` where `X.X.X` is the version number. Install the package in the consumer extension's root folder:
 
 ```bash
-npm install ./path/to/vscode-file-downloader-api-X.X.X.tgz
+npm install ./path/to/microsoft-vscode-file-downloader-api-X.X.X.tgz
 ```
