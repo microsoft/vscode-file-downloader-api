@@ -9,7 +9,7 @@ export default class ExtensionHelper {
 
     public async getApi(): Promise<FileDownloader> {
         if (this._extension == null) {
-            const extension = vscode.extensions.getExtension(`mindaro.file-downloader`);
+            const extension = vscode.extensions.getExtension(`mindaro-dev.file-downloader`);
             if (extension == null) {
                 throw new Error(`Failed to get File Downloader VS Code extension.`);
             }

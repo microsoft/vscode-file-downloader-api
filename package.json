@@ -16,7 +16,8 @@
     "main": "./out/index.js",
     "scripts": {
         "compile": "tsc -p ./",
-        "lint": "eslint src --ext ts"
+        "lint": "eslint src --ext ts",
+        "prepublish": "npm run compile"
     },
     "author": "mindaro",
     "license": "MIT",

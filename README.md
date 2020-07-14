@@ -3,13 +3,18 @@
 This package acts as a wrapper around the VS Code File Downloader extension, which exposes an API that allows other
 extensions to download and manage binary dependencies.
 
+Useful links:
+- VS Code Extension: https://marketplace.visualstudio.com/items?itemName=mindaro-dev.file-downloader
+- VS Code Extension Source: https://github.com/microsoft/vscode-file-downloader 
+- Package Source: https://github.com/microsoft/vscode-file-downloader-api
+
 ## Setup
 
 Place the following in your VS Code extension's `package.json` file:
 
 ```json
 "extensionDependencies": [
-    "mindaro.file-downloader"
+    "mindaro-dev.file-downloader"
 ]
 ```
 
