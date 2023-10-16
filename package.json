@@ -1,6 +1,6 @@
 {
     "name": "@microsoft/vscode-file-downloader-api",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Wrapper package for the VS Code File Downloader extension",
     "repository": {
         "type": "git",
